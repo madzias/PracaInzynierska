@@ -38,6 +38,9 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.language" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\madzi\OneDrive\Documents\GitHub\PracaInzynierska" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\madzi\OneDrive\Documents\Studia_FTiMS\PI" />
     </key>
@@ -190,6 +193,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="np_database" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="praca_inzynierska" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python36/python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/np_database.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="np_plot" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="praca_inzynierska" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -286,6 +310,7 @@
       <item itemvalue="Python.np_plot" />
       <item itemvalue="Python.np_truncate_flatten" />
       <item itemvalue="Python.main" />
+      <item itemvalue="Python.np_database" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -338,6 +363,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="496" y="28" key="#np_combine_files/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1607785662813" />
+    <state x="496" y="28" key="#np_database" timestamp="1612016201707">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="496" y="28" key="#np_database/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1612016201707" />
     <state x="496" y="28" key="#np_plot" timestamp="1610817105484">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -354,29 +383,29 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="496" y="28" key="#np_truncate_flatten/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1610893575165" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1607262805534">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1612010112629">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1607262805534" />
-    <state width="1493" height="186" key="GridCell.Tab.0.bottom" timestamp="1612008578496">
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1612010112629" />
+    <state width="1493" height="186" key="GridCell.Tab.0.bottom" timestamp="1612021249974">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1612008578496" />
+    <state width="1493" height="186" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1612021249974" />
     <state width="1493" height="186" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1611524319543" />
-    <state width="1493" height="186" key="GridCell.Tab.0.center" timestamp="1612008578496">
+    <state width="1493" height="186" key="GridCell.Tab.0.center" timestamp="1612021249973">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.0.center/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1612008578496" />
+    <state width="1493" height="186" key="GridCell.Tab.0.center/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1612021249973" />
     <state width="1493" height="186" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1611524319543" />
-    <state width="1493" height="186" key="GridCell.Tab.0.left" timestamp="1612008578496">
+    <state width="1493" height="186" key="GridCell.Tab.0.left" timestamp="1612021249973">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.0.left/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1612008578496" />
+    <state width="1493" height="186" key="GridCell.Tab.0.left/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1612021249973" />
     <state width="1493" height="186" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1611524319543" />
-    <state width="1493" height="186" key="GridCell.Tab.0.right" timestamp="1612008578496">
+    <state width="1493" height="186" key="GridCell.Tab.0.right" timestamp="1612021249974">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="186" key="GridCell.Tab.0.right/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1612008578496" />
+    <state width="1493" height="186" key="GridCell.Tab.0.right/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1612021249974" />
     <state width="1493" height="186" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1611524319543" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1611502692445">
       <screen x="0" y="0" width="1536" height="824" />

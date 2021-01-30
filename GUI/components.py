@@ -34,7 +34,7 @@ def open1file(tab, type):
     b1.grid(row=0, column=2)
     return p1
 
-def open2files(tab, type):
+def open2files(tab, type, *csv):
     frame_files = LabelFrame(tab, text="Select files", padx=10, pady=10) # pad od ramki do tego w środku
     frame_files.grid(row=1, column=0, padx=5, pady=5, sticky=N+W+E, columnspan=3) # pad o ramki do brzegu okna
     frame_files.columnconfigure(0, weight=1)
@@ -46,13 +46,19 @@ def open2files(tab, type):
         path_1.insert(END, filename)
         p1.set(filename)
 
+    if csv:
+        path1_label = Label(frame_files, text="Select CSV file containing the Re(n): ", padx=10, pady=5)
+        path1_label.grid(row=0, column=0, sticky=W)
+        path1_label.columnconfigure(0, weight=1)
+        path1_label.rowconfigure(0, weight=1)
+
     path_1 = Entry(frame_files, borderwidth=1)
-    path_1.grid(row=0, column=0, sticky=W+E)
+    path_1.grid(row=1, column=0, sticky=W+E)
     path_1.columnconfigure(0, weight=1)
     path_1.rowconfigure(0, weight=1)
 
     b1 = Button(frame_files, text="Open", command=lambda:browsefunc1(), borderwidth=1)
-    b1.grid(row=0, column=2)
+    b1.grid(row=1, column=2)
 
     p2 = StringVar()
     def browsefunc2():
@@ -60,13 +66,19 @@ def open2files(tab, type):
         path_2.insert(END, filename)
         p2.set(filename)
 
+    if csv:
+        path2_label = Label(frame_files, text="Select CSV file containing the Im(n): ", padx=10, pady=5)
+        path2_label.grid(row=2, column=0, sticky=W)
+        path2_label.columnconfigure(0, weight=1)
+        path2_label.rowconfigure(0, weight=1)
+
     path_2 = Entry(frame_files, borderwidth=1)
-    path_2.grid(row=1, column=0, sticky=W+E)
+    path_2.grid(row=3, column=0, sticky=W+E)
     path_2.columnconfigure(0, weight=1)
     path_2.rowconfigure(0, weight=1)
 
     b2 = Button(frame_files, text="Open", command=lambda:browsefunc2(), borderwidth=1)
-    b2.grid(row=1, column=2)
+    b2.grid(row=3, column=2)
 
     return [p1, p2]
 
@@ -90,3 +102,4 @@ def opendir(tab):
     b1 = Button(frame_files, text="Open", command=lambda:browsefunc(), borderwidth=1)
     b1.grid(row=0, column=2)
     return p1
+

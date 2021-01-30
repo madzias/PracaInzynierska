@@ -1,3 +1,17 @@
+about_database = "This program creates the material description in the Omnisim material database file.\
+\n \
+\nInput 1 - real part of the refractive index as a function of wavelength (CSV): \
+\nlambda [nm], Re(n) \
+\n(...) \
+\
+\nInput 2 - imaginary part of the refractive index as a function of wavelength (CSV): \
+\nlambda [nm], Im(n) \
+\n(...) \
+\n\
+\nExample source of data: https://refractiveindex.info \
+\n(n -> Re(n); k -> Im(n)) \
+\nTo obtain material loss [1/cm], the Im(n) should be multiplied by 2 Pi * 10000 / lambda"
+
 about_plane = "Manipulates the Omnisim input file, created by the Nanoparticle Detector: \
 changes plane in which nanoparticles are located - from xy to xz (or zx), \
 and also allows for some other corrections as change project and device numbers, \
