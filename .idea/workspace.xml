@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4ca4352a-9fd8-43f7-9f30-79e45d0b5e96" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1lF6JDsF4xrk5AueSVkSexfwki0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\madzi\OneDrive\Documents\Studia_FTiMS\PI" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="TESTS" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="praca_inzynierska" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python36/python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/TESTS.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="praca_inzynierska" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python36/python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/GUI" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/GUI/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="np" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="praca_inzynierska" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python36/python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/np.py" />
+      <option name="PARAMETERS" value="-4 t C:\Users\madzi\OneDrive\Pulpit\TEST\absorbance\F_in_40_ez.cht C:\Users\madzi\OneDrive\Pulpit\TEST\absorbance\F_in_40_hz.cht" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="np_abs_max" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="praca_inzynierska" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python36/python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/np_abs_max.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="np_change_plane" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="praca_inzynierska" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python36/python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/np_change_plane.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="np_change_type" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="praca_inzynierska" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python36/python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/np_change_type.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="np_combine_files" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="praca_inzynierska" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python36/python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/np_combine_files.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="np_plot" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="praca_inzynierska" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python36/python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/np_plot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="np_read_file (1)" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="praca_inzynierska" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/np_read_file.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="np_read_file" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="praca_inzynierska" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python36/python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:/OneDrive/Documents/Studia FTiMS/PI/scripts/np_read_file.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="np_truncate_flatten" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="praca_inzynierska" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/AppData/Local/Programs/Python/Python36/python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/np_truncate_flatten.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.np_read_file (1)" />
+      <item itemvalue="Python.np" />
+      <item itemvalue="Python.np_read_file" />
+      <item itemvalue="Python.TESTS" />
+      <item itemvalue="Python.np_combine_files" />
+      <item itemvalue="Python.np_change_type" />
+      <item itemvalue="Python.np_abs_max" />
+      <item itemvalue="Python.np_change_plane" />
+      <item itemvalue="Python.np_plot" />
+      <item itemvalue="Python.np_truncate_flatten" />
+      <item itemvalue="Python.main" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4ca4352a-9fd8-43f7-9f30-79e45d0b5e96" name="Default Changelist" comment="" />
+      <created>1607180417408</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607180417408</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="496" y="28" key="#TESTS" timestamp="1607290227243">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="496" y="28" key="#TESTS/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1607290227243" />
+    <state x="204" y="82" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1610821835451">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="204" y="82" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1610821835451" />
+    <state x="514" y="215" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607190784538">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="514" y="215" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1607190784538" />
+    <state x="496" y="28" key="#main" timestamp="1611411367601">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="496" y="28" key="#main/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1611411367601" />
+    <state x="496" y="28" key="#np" timestamp="1607447165088">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="496" y="28" key="#np/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1607447165088" />
+    <state x="496" y="28" key="#np_abs_max" timestamp="1610630229531">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="496" y="28" key="#np_abs_max/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1610630229531" />
+    <state x="496" y="28" key="#np_change_plane" timestamp="1610807254136">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="496" y="28" key="#np_change_plane/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1610807254136" />
+    <state x="496" y="28" key="#np_change_type" timestamp="1610458283661">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="496" y="28" key="#np_change_type/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1610458283661" />
+    <state x="496" y="28" key="#np_combine_files" timestamp="1607785662813">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="496" y="28" key="#np_combine_files/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1607785662813" />
+    <state x="496" y="28" key="#np_plot" timestamp="1610817105484">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="496" y="28" key="#np_plot/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1610817105484" />
+    <state x="496" y="28" key="#np_read_file_(1)" timestamp="1607778737605">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="496" y="28" key="#np_read_file_(1)/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1607778737605" />
+    <state x="496" y="28" key="#np_read_txt" timestamp="1607191174997">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="496" y="28" key="#np_read_txt/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1607191174997" />
+    <state x="496" y="28" key="#np_truncate_flatten" timestamp="1610893575166">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="496" y="28" key="#np_truncate_flatten/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1610893575165" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1607262805534">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1607262805534" />
+    <state width="1493" height="186" key="GridCell.Tab.0.bottom" timestamp="1612008578496">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="186" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1612008578496" />
+    <state width="1493" height="186" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1611524319543" />
+    <state width="1493" height="186" key="GridCell.Tab.0.center" timestamp="1612008578496">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="186" key="GridCell.Tab.0.center/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1612008578496" />
+    <state width="1493" height="186" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1611524319543" />
+    <state width="1493" height="186" key="GridCell.Tab.0.left" timestamp="1612008578496">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="186" key="GridCell.Tab.0.left/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1612008578496" />
+    <state width="1493" height="186" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1611524319543" />
+    <state width="1493" height="186" key="GridCell.Tab.0.right" timestamp="1612008578496">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="186" key="GridCell.Tab.0.right/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1612008578496" />
+    <state width="1493" height="186" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1611524319543" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1611502692445">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1611502692445" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1611502692445">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1611502692445" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1611502692445">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1611502692445" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1611502692445">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1611502692445" />
+    <state x="407" y="27" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1607255321444">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="407" y="27" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1607255321444" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1610893351410">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1610893351410" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1610453167644">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.34.1680.1010@0.0.1536.824" timestamp="1610453167644" />
+  </component>
+</project>
