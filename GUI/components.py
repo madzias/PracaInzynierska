@@ -27,6 +27,7 @@ def open1file(tab, type):
     p1 = StringVar()
     def browsefunc():
         filename = filedialog.askopenfilename(initialdir=str(Path.home()), title="Select a file", filetypes=type)
+        path_1.delete(0, END)
         path_1.insert(END, filename)
         p1.set(filename)
 
@@ -43,6 +44,7 @@ def open2files(tab, type, *csv):
     p1 = StringVar()
     def browsefunc1():
         filename = filedialog.askopenfilename(initialdir=str(Path.home()), title="Select a file", filetypes=type)
+        path_1.delete(0, END)
         path_1.insert(END, filename)
         p1.set(filename)
 
@@ -63,6 +65,7 @@ def open2files(tab, type, *csv):
     p2 = StringVar()
     def browsefunc2():
         filename = filedialog.askopenfilename(initialdir=str(Path.home()), title="Select a file", filetypes=type)
+        path_2.delete(0, END)
         path_2.insert(END, filename)
         p2.set(filename)
 
@@ -96,6 +99,7 @@ def opendir(tab):
     p1 = StringVar()
     def browsefunc():
         filename = filedialog.askdirectory(initialdir=str(Path.home()), title="Select a folder")
+        path_1.delete(0, END)
         path_1.insert(END, filename)
         p1.set(filename)
 

@@ -204,6 +204,6 @@ def abs_maxima(directory, min, max, variable_name):
     #
     #     except ValueError:
     #         info = "Different numbers of maxima in datasets, skipping plot."
-# d = r'C:\Users\madzi\OneDrive\Pulpit\TEST\test_abs_max'
-# print(d)
-# abs_maxima(d, 301, 699, "")
+d = r'C:\Users\madzi\OneDrive\Pulpit\TEST\test_abs_max'
+
+abs_maxima(d, 301, 699, "")
