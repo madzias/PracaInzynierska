@@ -77,7 +77,7 @@ if __name__ == "__main__":
     root = Tk()
     root.title("OSA - OmniSim Analizer")
     root.iconbitmap(r'..\wasp.ico')
-    root.geometry("600x630")
+    root.geometry("600x645")
     root.columnconfigure(0, weight=1)
     root.rowconfigure(1, weight=1)
     MainApplication(root).grid()

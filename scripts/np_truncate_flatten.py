@@ -79,6 +79,7 @@ def truncate_flatten(path, truncate, sigma_truncate, flatten, sigma_flatten, new
                 sizey = float(values_list[6])
                 sizez = float(values_list[7])
 
+
                 d = re.findall(r'(?<=subnodes\[)\d+(?=\])', line)
                 project = int(d[0])
                 if new_device == "":
@@ -90,6 +91,7 @@ def truncate_flatten(path, truncate, sigma_truncate, flatten, sigma_flatten, new
                 R = sizex/2.0            # Radius of the original sphere
                 # Truncate distribution:
                 truncate_dist = normalvariate(truncate, sigma_truncate)
+
                 h = (100-truncate_dist)*sizex / 100.0  # Height of the cap
 
                 try:

@@ -37,12 +37,12 @@ class Database_tab(Frame):
 
 
         # Checkboxes
-        frame_options = LabelFrame(self.parent, text="Epsilon validity range", padx=10, pady=10) # pad od ramki do tego w środku
+        frame_options = LabelFrame(self.parent, text="Lambda validity range", padx=10, pady=10) # pad od ramki do tego w środku
         frame_options.grid(row=2, column=0, padx=5, pady=5, sticky=E+W, columnspan=3) # pad o ramki do brzegu okna
         frame_options.columnconfigure(0, weight=1)
         frame_options.rowconfigure(3, weight=1)
 
-        description = Label(frame_options, text="Modify epsilon validity range or leave default values", justify=LEFT)
+        description = Label(frame_options, text="Modify lambda validity range or leave default values", justify=LEFT)
         description.grid(row=0, column=0, columnspan=4, sticky=W)
         min_desc = Label(frame_options, text="Minimum wavelength (um):")
         min_desc.grid(row=1, column=0, sticky=W)

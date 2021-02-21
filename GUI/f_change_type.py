@@ -10,7 +10,7 @@ class Convert_tab(Frame):
         Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
         comp.about(self.parent, desc.about_convert)
-        path = comp.open1file(self.parent, (("TXT", "*.txt"), ("CHT", "*.cht")))
+        path = comp.open1file(self.parent, (("TXT CHT", ".txt .cht"), ("TXT", "*.txt"), ("CHT", "*.cht"), ("All files", "*.*")))
 
         def run_np():
             start = True

@@ -1,5 +1,6 @@
 import os, sys, math, re
 from scipy.interpolate import interp1d
+from datetime import datetime
 import numpy as np
 import matplotlib.pyplot as plt
 from scripts.np_read_file import ReadFile
@@ -36,7 +37,6 @@ def abs_maxima(directory, min, max, variable_name):
     intstep = 0.01
     intpoints = int((xmaxint - xminint) / intstep)
     do_linear_regression = True
-    output = os.path.join(directory, "")
 
     # Experimental maxima {size [nm] : maximum [nm]}
     # http://www.cytodiagnostics.com/store/pc/Gold-Nanoparticle-Properties-d2.htm
@@ -60,27 +60,28 @@ def abs_maxima(directory, min, max, variable_name):
 
     xmax_list = []
     var_list = []
-
+    var_name = ""
     # Get the variable name from first file, second line.
-    # If variable does not exists (i.e. Omnisim was not run in Scanner mode),
-    # ask for a variable name
+    # If variable does not exists (i.e. Omnisim was not run in Scanner mode) use the variable entered in GUI
     with open(output_filename, 'w+') as output:
         for filename in input_filenames:
             file = ReadFile(filename)
             file.run_read_file()
 
-            var_name = ""
+
             var_value = ""
             if input_filenames.index(filename) == 0:
                 try:
                     var_name = re.findall(r'(?<=\().*(?=\s+\=)', file.title)[0]
                 except:
                     var_name = variable_name
+                output.write("# File created on {}\n".format(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+                output.write("# {}lambda_max [nm]\n".format(var_name.ljust(9)))
             try:
                 var_value = re.findall(r'(?<=\=\s).*(?=\))', file.title)[0]
             except:
                 var_value, ext = os.path.basename(filename).split(".")
-                info.append = "Warning - variable value was taken from the filename"
+                info.append("Warning - variable value was taken from the filename")
             try:
                 var_value = float(var_value)
             except ValueError:
@@ -102,6 +103,7 @@ def abs_maxima(directory, min, max, variable_name):
             # Do some rescaling etc.
             if var_name == "np_size":
                 # Convert to nanometers
+                print("przeskalowane")
                 var_value *= 1000
             if var_name == "inglass" and var_value < 1:
                 # Convert from [%/100] to [%], if necessary
@@ -129,6 +131,7 @@ def abs_maxima(directory, min, max, variable_name):
             # x values for interpolation
             xnew = np.linspace(xminint, xmaxint, num=intpoints, endpoint=True)
             # Interpolated y values
+            print(xnew)
             yint = list(fint(xnew))
 
             ### Find all of the maxima
@@ -139,7 +142,7 @@ def abs_maxima(directory, min, max, variable_name):
 
             # If no local maximum is found, skip the file
             if not xmax:
-                print("no max in range [{}, {}]".format(xminint, xmaxint))
+                # print("no max in range [{}, {}]".format(xminint, xmaxint))
                 continue
 
             #print("max = ", xmax)
@@ -147,63 +150,58 @@ def abs_maxima(directory, min, max, variable_name):
             # Append result to a list
             xmax_list.append(xmax)
             var_list.append(var_value)
-            var_name = ""
-            print(var_value)
-            print(xmax)
-            print("{}    {}\n".format(var_value,str(xmax)[1:-1].replace(","," ")))
-            #output.readlines(var_value.ljust())
+            output.write("{}{}\n".format(str(round(var_value,1)).ljust(11),str(xmax)[1:-1].replace(","," ")))
 
-        # if plot_partial:
-        #     plt.plot(xnew, fint(xnew))
-        #     plt.plot(xmax, ymax, "x")
-        #     if var_name == "np_size" and experimental_maxima.has_key(var_value):
-        #         # If the experimental value exists for specific np_size, find it and plot
-        #         xmax_exp = experimental_maxima[var_value]
-        #         plt.plot(xmax_exp,ymax,"x")
-        #         plt.text("{}{}  Difference: {} (nm)".format(xmax_exp,ymax,abs(xmax_exp-xmax)))
-        #     plt.title("Absorption spectra, {} = {}".format(var_name, var_value))
-        #     plt.xlabel("Wavelength (nm)")
-        #     plt.ylabel("Absorbance (a.u.)")
-        #     plt.show()
+    if len(xmax_list) < 2:
+        do_linear_regression = False
+
+    do_plot = True
+    for i in xmax_list:
+        if len(i) > 1:
+            do_plot = False
+            break
+    if len(xmax_list) == 0:
+        info.append("There is no maximum in chosen range.")
+        do_plot = False
+        success = False
+
+    if do_plot:
+        plt.plot(var_list, xmax_list, ".")
+        if do_linear_regression:
+            # Linear regression
+            a, b = np.polyfit(var_list, xmax_list, 1)
+            xmax_reg = [a*i+b for i in var_list]
+            plt.plot(var_list, xmax_reg)
+
+        if var_name in ["trunc", "inglass"]:
+            plot_title = \
+                "Position of the maximum of the absorption spectra \n for the truncated spheres of size 50 nm on glass"
+            plot_xlabel = "Sphere truncate factor (%)\n(0% - full sphere; 50% - half sphere, etc.)"
+        elif var_name == "np_size":
+            plot_title = \
+                "Position of the maximum of the absorption spectra \n for the spheres of variable size in air"
+            plot_xlabel = "Sphere size (µm)"
+        elif var_name == "al2o3":
+            plot_title = \
+                "Position of the maximum of the absorption spectra \n for the spheres covered by Al2O3 layer"
+            plot_xlabel = "Thickness of the Al2O3 layer (µm)"
+        else:
+            plot_title = "Position of the maximum of the absorption spectra"
+            plot_xlabel = var_name
+
+        plt.title(plot_title)
+        plt.xlabel(plot_xlabel)
+        plt.ylabel("Wavelength (nm)")
+        plt.show()
+
+    else:
+        info.append("Different numbers of maxima in datasets, skipping plot.")
+
+    if not success:
+        if os.path.exists(output_filename):
+            os.remove(output_filename)
+    return output_filename, success, info
 
 
-    #
-    # if len(xmax_list) < 2:
-    #     do_linear_regression = False
-    #
-    # if xmax_list:
-    #     try:
-    #         plt.plot(var_list, xmax_list, ".")
-    #         if do_linear_regression:
-    #             # Linear regression
-    #             a, b = np.polyfit(var_list, xmax_list, 1)
-    #             xmax_reg = [a*i+b for i in var_list]
-    #             plt.plot(var_list, xmax_reg)
-    #
-    #         if var_name in ["trunc", "inglass"]:
-    #             plot_title = \
-    #                 "Position of the maximum of the absorption spectra \n for the truncated spheres of size 50 nm on glass"
-    #             plot_xlabel = "Sphere truncate factor (%)\n(0% - full sphere; 50% - half sphere, etc.)"
-    #         elif var_name == "np_size":
-    #             plot_title = \
-    #                 "Position of the maximum of the absorption spectra \n for the spheres of variable size in air"
-    #             plot_xlabel = "Sphere size (µm)"
-    #         elif var_name == "al2o3":
-    #             plot_title = \
-    #                 "Position of the maximum of the absorption spectra \n for the spheres covered by Al2O3 layer"
-    #             plot_xlabel = "Thickness of the Al2O3 layer (µm)"
-    #         else:
-    #             plot_title = "Position of the maximum of the absorption spectra"
-    #             plot_xlabel = var_name
-    #
-    #         plt.title(plot_title)
-    #         plt.xlabel(plot_xlabel)
-    #         plt.ylabel("Wavelength (nm)")
-    #         plt.savefig()
-    #         plt.show()
-    #
-    #     except ValueError:
-    #         info = "Different numbers of maxima in datasets, skipping plot."
-d = r'C:\Users\madzi\OneDrive\Pulpit\TEST\test_abs_max'
-
-abs_maxima(d, 301, 699, "")
+# d = r'C:\Users\madzi\OneDrive\Pulpit\TESTY INZYNIERKA\6_test_maximum\al2o3'
+# abs_maxima(d, 400, 600, "")

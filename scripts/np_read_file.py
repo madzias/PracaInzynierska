@@ -129,7 +129,6 @@ class ReadFile:
                 if len(a) > 0 and len(line) > 40:
                     a = a[0].split(' ')
                     a = list(filter(None, a))
-                    print("2D")
                     self.mesurements.append(a)
 
     def run_read_file(self):

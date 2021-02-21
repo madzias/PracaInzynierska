@@ -22,7 +22,7 @@ class Plane_tab(Frame):
             reve = reverse_var.get()
             maxi = maximum_var.get()
             success = False
-            info = ""
+            info = []
             output = ""
             if not os.path.exists(file1):
                 messagebox.showerror("Error!", "First file does not exist!")

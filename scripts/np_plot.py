@@ -1,9 +1,12 @@
 import matplotlib as mpl
+from matplotlib import colors
+from matplotlib import cm
 import matplotlib.pyplot as plt
+from matplotlib.widgets import Slider
 import os, re
 from scripts.np_read_file import ReadFile
 
-def plot(path, in_gamma):
+def plot(path):
     '''
     Plots data from the .cht file and saves it as the png file.
 
@@ -16,7 +19,7 @@ def plot(path, in_gamma):
 
     output_path = ""
     success = True
-    info = ""
+    info = []
 
     # Read data from input file
     v = ReadFile(path)
@@ -27,11 +30,11 @@ def plot(path, in_gamma):
     output_path = pre + ".png"
 
     # Graph and font size
-    fig_size = plt.rcParams["figure.figsize"]
-    fig_size[0] = 15
-    fig_size[1] = 9
-    plt.rcParams["figure.figsize"] = fig_size
-    plt.rcParams.update({'font.size': 22})
+    # fig_size = plt.rcParams["figure.figsize"]
+    # fig_size[0] = 15
+    # fig_size[1] = 10
+    # plt.rcParams["figure.figsize"] = fig_size
+    # plt.rcParams.update({'font.size': 15})
 
     xtable = []
     ytable = []
@@ -43,7 +46,6 @@ def plot(path, in_gamma):
         # Plot title
         plot_title = v.title
         plot_title = plot_title.replace("In positive flux relative to Out positive flux from FDTD", "Absorbance ")
-        # Keep the space (hack ;) )!
 
         # x label
         x_unit = v.x_unit
@@ -51,8 +53,6 @@ def plot(path, in_gamma):
             x_unit = "(" + v.x_unit[1:] + ")"
         x_unit = x_unit.replace("um","µm")
         plot_x_label = v.x_label + " " + x_unit
-        # plot_x_label = plot_x_label.replace(" /fs"," (fs)")
-        # plot_x_label = plot_x_label.replace(" /um"," (µm)")
 
         # y label
         y_unit = v.y_unit
@@ -60,12 +60,6 @@ def plot(path, in_gamma):
             y_unit = "(" + v.y_unit[1:] + ")"
         y_unit = y_unit.replace("um","µm")
         plot_y_label = v.y_label + " " + y_unit
-        # plot_y_label = plot_y_label.replace("/V/m","(V/m)")
-        # plot_y_label = plot_y_label.replace("/A/m","(A/m)")
-        # plot_y_label = plot_y_label.replace("/J/m","(J/m)")
-        # plot_y_label = plot_y_label.replace(" /W/m"," (W/m)")
-        # plot_y_label = plot_y_label.replace(" /W/um"," (W/µm)")
-        # plot_y_label = plot_y_label.replace(" /W"," (W)")
 
         # Read data
         x = []
@@ -135,49 +129,51 @@ def plot(path, in_gamma):
             xtable.append(x)
             ztable.append(z)
 
-        # print(ztable[0][0])
-        # print(ztable[0][-1])
-        # print(ztable[-1][0])
-        # print(ztable[-1][-1])
 
         # Borders of the graph
         extent_data = (round(y[0], 1), round(y[-1], 1), round(xtable[0], 1), round(xtable[-1], 1))
-        # print(round(y[0],1), "\n", round(y[-1],1), "\n",round(xtable[0],1), "\n",round(xtable[-1],1))
-        # Initial gamma for color normalization
-        # if len(args) > 0:
-        #     try:
-        #         gamma = args[0]
-        #     except:
-        #         gamma = 1.0
-        # else:
-        #     gamma = 1.0
-        # gamma = 0.5
-        # while gamma != "":
-        #
-        #     try:
-        #         gamma = float(gamma)
-        #     except ValueError:
-        #         gamma = 1.0
-        gamma = float(in_gamma)
 
             # Normalization
-        norm = mpl.colors.PowerNorm(gamma=gamma)
+        def f(n):
+            norm = mpl.colors.PowerNorm(gamma=n)
+            return norm
 
-        plt.clf() # Clear the previous graph
-        plt.imshow(ztable, origin="lower", norm=norm, cmap='hot', extent=extent_data, interpolation='nearest',
-                   aspect='auto')
-        plt.colorbar().set_label(plot_z_label)
+        # plt.clf() # Clear the previous graph
+        # plt.imshow(ztable, origin="lower", norm=norm, cmap='hot', extent=extent_data, interpolation='nearest',
+        #            aspect='auto')
+        # plt.colorbar().set_label(plot_z_label)
+        # plt.xlabel(plot_x_label)
+        # plt.ylabel(plot_y_label)
+        # plt.title(plot_title, loc="left", pad="30")
+        # plt.savefig(output_path)
+        # plt.ion() # This is for non-blocking .show()
+        # plt.show()
+
+        gam = 0.7
+        # plt.clf() # Clear the previous graph
+        fig, ax = plt.subplots()
+        plt.subplots_adjust(left=0.01, bottom=0.25)
+        l = plt.imshow(ztable, origin="lower", norm=f(gam), cmap='hot', extent=extent_data, interpolation='nearest', aspect='equal')
+        #fig.colorbar(cm.ScalarMappable(norm=mpl.colors.PowerNorm(gamma=0.5), cmap='hot')).set_label(plot_z_label)
+        #plt.colorbar().set_label(plot_z_label)
         plt.xlabel(plot_x_label)
         plt.ylabel(plot_y_label)
-        plt.title(plot_title, loc="left", pad="30")
-        plt.savefig(output_path)
-        plt.ion() # This is for non-blocking .show()
-        plt.show()
+        plt.title(plot_title, loc="left", pad="10")
+        ax.margins(x=0)
 
-            # print("Current gamma = {}.".format(gamma))
-            # gamma = input("Input new gamma [0,1] or <cr> to accept current value: ")
+        axb = plt.axes([0.15, 0.01, 0.65, 0.03])
+        g = Slider(axb, "Gamma", 0.0, 1.0, valinit=gam)
+        def update(val):
+            gg = g.val
+            l.set_norm(f(gg))
+            fig.canvas.draw_idle()
+        g.on_changed(update)
+
+        # plt.savefig(output_path)
+        # plt.ion() # This is for non-blocking .show()
+        plt.show()
 
         return output_path, success, info
 
-# path = r'C:\Users\madzi\OneDrive\Pulpit\TEST\test_plot\I_t_u.cht'
-# plot(path)
+# path = r'C:\Users\madzi\OneDrive\Pulpit\TEST\test_plot\I_xz_u.cht'
+# plot(path, 0.7)

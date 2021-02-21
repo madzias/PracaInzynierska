@@ -5,8 +5,6 @@ from scripts.np_save_file import save_file
 def change_type(path):
     r = ReadFile(path)  #Read txt file
     r.run_read_file()
-    print(r.mesurements)
-    print(r.title)
     mesurements = []
     col_names = []
     new_path = ''
@@ -64,7 +62,6 @@ def change_type(path):
         #     y = format(float(i[1]), "10.6e")
         #     mesurements.append("\n%s%s" % (str(x).rjust(14), str(y).rjust(16)))
     if success:
-        print(r.mesurements)
         save_file(new_path, header, col_names, r.mesurements)
     return new_path, success, info
 

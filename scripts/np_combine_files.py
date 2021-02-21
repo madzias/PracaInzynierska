@@ -114,20 +114,6 @@ class CombineFiles:
             if self.A.y_unit == "/dB":
                 header = header.replace(self.A.y_label + " " + self.A.y_unit, "Absorbance (%/10)")
             header = header.replace(" /um", " (µm)")
-            # with open(r'..\scripts\cht_header.txt', 'r') as header:
-            #     header = header.read()
-
-            #     #Substitute elements in header
-            #     header = re.sub('%%TITLE%%', "Absorbance", header)
-            #     header = re.sub('%%X-LABEL%%', self.A.x_label, header)
-            #     if self.A.x_unit == "/um":
-            #         header = re.sub('%%X-UNIT%%', "(µm)", header)
-            #     header = re.sub('%%Y-LABEL%%', "Absorbance", header)
-            #     if self.A.y_unit == "/W/um":
-            #         header = re.sub('%%Y-UNIT%%', "(/%100)", header)
-            #     elif self.A.y_unit == "/dB":
-            #         header = re.sub('%%Y-UNIT%%', "(/%10)", header)
-            #     header = re.sub('%%NUMBER_OF_MESUREMENTS%%', str(len(self.A.mesurements)), header)
             col_names.append(['Xvals', 'Yvals1'])
 
         elif self.A.type == "txt":
@@ -142,20 +128,6 @@ class CombineFiles:
                 col_names.append([x_unit, "(%/100)"])
             elif self.A.y_unit == "/dB":
                 col_names.append([x_unit, "(%/10)"])
-            # with open(r'..\scripts\txt_header.txt', 'r') as header:
-            #     header = header.read()
-            #
-            # header = re.sub('%%TITLE%%', "Absorbance", header)
-            #
-            # if self.A.title.title.startswith('In'):
-            #     header = re.sub('%%IN_OUT%%', 'IN-', header)
-            # elif self.A.title.startswith('Out'):
-            #     header = re.sub('%%IN_OUT%%', 'OUT', header)
-            # else:
-            #     self.info = "Title is incorrect. Cannot check if file is in or out positive flux."
-            #     self.success = False
-            # self.col_names.append([self.A.x_label, "Absorbance"])
-            # self.col_names.append(["(µm)", "%/100"]) #do sprawdzenia
 
         for i in range(0, len(self.A.mesurements)):
                 if self.A.mesurements[i][0] == self.B.mesurements[i][0]:

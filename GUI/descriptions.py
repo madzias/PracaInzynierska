@@ -1,16 +1,17 @@
 about_database = "This program creates the material description in the Omnisim material database file.\
 \n \
 \nInput 1 - real part of the refractive index as a function of wavelength (CSV): \
-\nlambda [nm], Re(n) \
-\n(...) \
+\n  lambda [nm], Re(n) \
 \
 \nInput 2 - imaginary part of the refractive index as a function of wavelength (CSV): \
-\nlambda [nm], Im(n) \
-\n(...) \
+\n  lambda [nm], Im(n) \
 \n\
 \nExample source of data: https://refractiveindex.info \
 \n(n -> Re(n); k -> Im(n)) \
-\nTo obtain material loss [1/cm], the Im(n) should be multiplied by 2 Pi * 10000 / lambda"
+\nTo obtain material loss [1/cm], the Im(n) should be multiplied by 2 Pi * 10000 / lambda \
+\n \
+\nOutput: \
+\n  Binary MATLAB file ps_refbase.mat "
 
 about_plane = "Manipulates the Omnisim input file, created by the Nanoparticle Detector: \
 changes plane in which nanoparticles are located - from xy to xz (or zx), \
@@ -40,7 +41,7 @@ with some standard deviation.\
 \n  (...)\
 \n  Assumption: nanoparticles are placed in the \"zx\" or \"xz\" plane, so y value is to be adjusted.\
 \nOutput:\
-\n  File with a \"_truncx_flaty\" suffix, where x is the truncating factor and y is the flattening factor"
+\n  File with a \"_trunc[X]_flat[Y]\" suffix, where [X] is the truncating factor and [Y] is the flattening factor"
 
 about_convert = "Program converts the .txt or .cht file with sensor data from OmniSim, to the corresponding .cht or .txt file.\
 \n \
@@ -71,11 +72,12 @@ about_max = "Finds maxima of the absorption spectra given in the the *.txt or .c
 \n  For best results (e.g. automatic determination of variable names),\
 \n  Omnisim should be run in FDTD Scanner mode, scanning for np_size, inglass, trunc etc.\
 \nOutput:\
-\n  abs-max-out file"
+\n  abs-max-out file \
+\nProgram will create a plot if possible. Remember to save it manually!"
 
 about_plot = "Plots data from the .cht or .txt file and saves it as the png file. \
 \n \
 \nInput:\
 \n  .cht file from Omnisim\
 \nOutput:\
-\n  .png graphics file with a plot."
+\n  graphics with a plot. Remember to save it manually!"

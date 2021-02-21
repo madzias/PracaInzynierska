@@ -40,6 +40,16 @@ def change_plane(path, project, device, layer, baseline, set_orientation_zx, x_r
     structure = False
     info = ""
 
+    if x_reverse == "False":
+        x_reverse = False
+    else:
+        x_reverse = True
+
+    if set_orientation_zx == "False":
+        set_orientation_zx = False
+    else:
+        set_orientation_zx = True
+
     with open(path, 'r') as input_file:
         file = input_file.readlines()
 
@@ -55,6 +65,7 @@ def change_plane(path, project, device, layer, baseline, set_orientation_zx, x_r
                 values_list = values[0].split(",")
                 z = float(values_list[1])
                 x = float(values_list[2])
+                print(x)
                 angle = float(values_list[3])
                 y = float(values_list[4])
                 sizex = float(values_list[5])
@@ -72,10 +83,15 @@ def change_plane(path, project, device, layer, baseline, set_orientation_zx, x_r
                 z, y = y, z
                 if set_orientation_zx:
                     x, z = z, x
+                print("- " + str(x))
 
                 x_max = float(x_max)
+                print(x_reverse)
                 if x_reverse:
                     x = -x + x_max
+                    print("-- " + str(x))
+
+
 
                 # addellipsoid: FUNCTION(layer, z, x, angle, y, sizez, sizex, sizey)
                 newline = 'f.Exec("app.subnodes[{0}].subnodes[{1}].fsdevice.addellipsoid({2},{3},{4},{5},{6},{7},{8},{9})")\n' \

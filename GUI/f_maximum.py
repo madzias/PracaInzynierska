@@ -4,27 +4,37 @@ import os
 import GUI.descriptions as desc
 import GUI.components as comp
 
-import scripts.np_combine_files as np_combine
+import scripts.np_maximum as np_max
 
 class Maximum_tab(Frame):
     def __init__(self, parent, root, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
         comp.about(self.parent, desc.about_max)
-        files = comp.opendir(self.parent)
+        dirs = comp.opendir(self.parent)
 
         def run_np():
             start = True
-            file1 = str(files[0].get())
-            file2 = str(files[1].get())
-            final_s_output = []
-            final_e_output = []
+            dir1 = str(dirs.get())
+            min_v = min_var.get()
+            max_v = max_var.get()
+            lb_v = lb_var.get()
             success = False
-            info = ""
+            info = []
             output = ""
-            if not os.path.exists(file1):
-                messagebox.showerror("Error!", "First file does not exist!")
+            if not os.path.exists(dir1):
+                messagebox.showerror("Error!", "Directory does not exist!")
                 start = False
+            if float(min_v) > float(max_v):
+                messagebox.showerror("Error!", "Minimum has to be smaller than maximum!")
+                start = False
+            if start:
+                output, success, info = np_max.abs_maxima(dir1, min_v, max_v, lb_v)
+                if success:
+                    messagebox.showinfo("Success!", "Output file " + str(output) + " has been created")
+                else:
+                    for i in info:
+                        messagebox.showerror("Error!", i)
 
         def clear_input():
             minimum.delete(0, END)
@@ -39,7 +49,8 @@ class Maximum_tab(Frame):
         frame_options.columnconfigure(0, weight=1)
         frame_options.rowconfigure(0, weight=1)
 
-        description = Label(frame_options, text="Program looks for maximum in the [min, max] range. \nModify below settings or leave the default values.", justify=LEFT)
+        description = Label(frame_options, text="Program looks for maximum in the [min, max] range. "
+                                                "\nModify below settings or leave the default values.", justify=LEFT)
         description.grid(row=0, column=0, columnspan=4, sticky=W)
         min_desc = Label(frame_options, text="Minimum: ")
         min_desc.grid(row=1, column=0, sticky=W)
@@ -59,7 +70,8 @@ class Maximum_tab(Frame):
         frame_options.columnconfigure(0, weight=1)
         frame_options.rowconfigure(0, weight=1)
 
-        description = Label(frame_options, text="Program will get variable name from the first file. \nYou can enter variable name in case program won't find it.", justify=LEFT)
+        description = Label(frame_options, text="Program will get variable name from the first file. "
+                                                "\nYou can enter variable name in case program won't find it.", justify=LEFT)
         description.grid(row=0, column=0, columnspan=4, sticky=W)
         lb_desc = Label(frame_options, text="Variable name: ")
         lb_desc.grid(row=1, column=0, sticky=W)
