@@ -1,9 +1,8 @@
 import matplotlib as mpl
 from matplotlib import colors
-from matplotlib import cm
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
-import os, re
+import os
 from scripts.np_read_file import ReadFile
 
 def plot(path):
@@ -155,7 +154,7 @@ def plot(path):
         plt.subplots_adjust(left=0.01, bottom=0.25)
         l = plt.imshow(ztable, origin="lower", norm=f(gam), cmap='hot', extent=extent_data, interpolation='nearest', aspect='equal')
         #fig.colorbar(cm.ScalarMappable(norm=mpl.colors.PowerNorm(gamma=0.5), cmap='hot')).set_label(plot_z_label)
-        #plt.colorbar().set_label(plot_z_label)
+        plt.colorbar().set_label(plot_z_label)
         plt.xlabel(plot_x_label)
         plt.ylabel(plot_y_label)
         plt.title(plot_title, loc="left", pad="10")
@@ -163,6 +162,7 @@ def plot(path):
 
         axb = plt.axes([0.15, 0.01, 0.65, 0.03])
         g = Slider(axb, "Gamma", 0.0, 1.0, valinit=gam)
+
         def update(val):
             gg = g.val
             l.set_norm(f(gg))
@@ -170,10 +170,13 @@ def plot(path):
         g.on_changed(update)
 
         # plt.savefig(output_path)
-        # plt.ion() # This is for non-blocking .show()
+        # plt.ioff() # This is for non-blocking .show()
+        # plt.show()
+        # plt.close()
+
         plt.show()
 
-        return output_path, success, info
-
+        return output_path, success, info, g.val
+#
 # path = r'C:\Users\madzi\OneDrive\Pulpit\TEST\test_plot\I_xz_u.cht'
-# plot(path, 0.7)
+# plot(path)

@@ -15,18 +15,17 @@ class Plot_tab(Frame):
 
         def run_np():
             start = True
-            #g = float(gamma.get())
             file = str(files.get())
             if not os.path.exists(file):
                 messagebox.showerror("Error!", "File does not exist!")
                 start = False
-            # if not 0 <= g <= 1:
-            #     messagebox.showerror("Error!", "The percent where the spheres will be cut must be between 0 and 100%")
-            #     start = False
             if start:
-                output, success, info = np_plot.plot(file)
-                if success == False:
-                    messagebox.showerror("Error!", info)
+                output, success, info, gamma = np_plot.plot(file)
+                print("ttttttttttttttttt")
+                # if success:
+                #     messagebox.askyesno("Saving plot", "Do you want to save this plot?")
+                # elif not success:
+                #     messagebox.showerror("Error!", info)
 
         # def clear_input():
         #     gm.delete(0, END)
@@ -49,9 +48,6 @@ class Plot_tab(Frame):
         # Buttons
         b_close = Button(self.parent, text="Close", borderwidth=1, width=20, command=root.destroy)
         b_close.grid(row=3, column=0, sticky=W+S, padx=5, pady=5)
-
-        # b_clear = Button(self.parent, text="Clear", borderwidth=1, width=20,command=clear_input)
-        # b_clear.grid(row=3, column=1, sticky=S, padx=5, pady=5)
 
         b_run = Button(self.parent, text="Run", borderwidth=1, width=20, command=run_np)
         b_run.grid(row=3, column=2, sticky=S, padx=5, pady=5)
