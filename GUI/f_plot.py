@@ -1,17 +1,82 @@
 from tkinter import *
 from tkinter import messagebox
+from tkinter import ttk
 import os
+import matplotlib as mpl
+from matplotlib import colors
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
 import GUI.descriptions as desc
 import GUI.components as comp
 
 import scripts.np_plot as np_plot
 
-class Plot_tab(Frame):
+
+class PlotTab(Frame):
     def __init__(self, parent, root, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
+        self.gamma = StringVar()
+        self.fig = Figure()
         comp.about(self.parent, desc.about_plot)
         files = comp.open1file(self.parent, (("TXT CHT", ".txt .cht"), ("All files", "*.*")))
+
+        # New window for plot
+        def plot_window(plt_type, data):
+            new_window = Toplevel(self.parent)
+            new_window.title("OSA - OmniSim Analizer | Plot")
+            new_window.geometry("600x600")
+            new_window.iconbitmap(r'..\wasp.ico')
+            new_window.columnconfigure(0, weight=1)
+
+            def draw_plot():
+                gamma = float(self.gamma.get())
+                b = self.fig.add_subplot()
+                norm = mpl.colors.PowerNorm(gamma=gamma)
+                xtable = data["xtable"]
+                ytable = data["ytable"]
+                ztable = data["ztable"]
+                extent_data = (round(ytable[0], 1), round(ytable[-1], 1), round(xtable[0], 1), round(xtable[-1], 1))
+                img = b.imshow(ztable, origin="lower", norm=norm, cmap='hot', extent=extent_data, interpolation='nearest', aspect='equal')
+                b.set_title(data["plot_title"])
+                b.set_ylabel(data["plot_y_label"])
+                a.set_xlabel(data["plot_x_label"])
+                self.fig.colorbar(img).set_label(data["plot_z_label"])
+
+                canvas = FigureCanvasTkAgg(self.fig, master=new_window)
+                canvas.get_tk_widget().grid(row=2, column=0, columnspan=3)
+                canvas.draw()
+
+            if plt_type == "1D":
+                a = self.fig.add_subplot()
+                a.plot(data["x"], data["y"])
+                a.set_title(data["plot_title"])
+                a.set_ylabel(data["plot_y_label"])
+                a.set_xlabel(data["plot_x_label"])
+
+                canvas1d = FigureCanvasTkAgg(self.fig, master=new_window)
+                canvas1d.get_tk_widget().grid(row=0, column=0)
+                canvas1d.draw()
+
+            else:
+                self.gamma.set('0.50')
+                g_label = Label(new_window, text="Set gamma:")
+                g_label.grid(row=0, column=0)
+                slider = ttk.Scale(new_window, from_=0.01, to=1, orient=HORIZONTAL, command=lambda g: self.gamma.set('%0.2f' % float(g)), length=300)
+                slider.grid(row=1, column=0, padx=5, pady=5)
+                slider.set('0.5')
+                ttk.Label(new_window, textvariable=self.gamma).grid(row=1, column=1, padx=20)
+                b_refresh = Button(new_window, text="Refresh", borderwidth=1, width=20, command=draw_plot)
+                b_refresh.grid(row=1, column=2, sticky=E, padx=5, pady=5)
+                draw_plot()
+
+            def save_plot():
+                self.fig.savefig(data["output_path"])
+                messagebox.showinfo("Success!", "Plot has been saved as " + str(data["output_path"]))
+
+            # Buttons and slider
+            b_save = Button(new_window, text="Save plot", borderwidth=1, width=20, command=save_plot)
+            b_save.grid(row=4, column=0, sticky=W+S, padx=5, pady=5)
 
         def run_np():
             start = True
@@ -20,30 +85,8 @@ class Plot_tab(Frame):
                 messagebox.showerror("Error!", "File does not exist!")
                 start = False
             if start:
-                output, success, info, gamma = np_plot.plot(file)
-                print("ttttttttttttttttt")
-                # if success:
-                #     messagebox.askyesno("Saving plot", "Do you want to save this plot?")
-                # elif not success:
-                #     messagebox.showerror("Error!", info)
-
-        # def clear_input():
-        #     gm.delete(0, END)
-        #     gm.insert(0, 0.5)
-
-
-        # Checkboxes
-        # frame_options = LabelFrame(self.parent, text="Gamma", padx=10, pady=10) # pad od ramki do tego w środku
-        # frame_options.grid(row=2, column=0, padx=5, pady=5, sticky=E+W, columnspan=3) # pad o ramki do brzegu okna
-        # frame_options.columnconfigure(0, weight=1)
-        # frame_options.rowconfigure(3, weight=1)
-        #
-        # g_desc = Label(frame_options, text="Enter gamma or leave existing one:")
-        # g_desc.grid(row=8, column=0, sticky=W)
-        # gamma = StringVar(root)
-        # gm = Spinbox(frame_options, from_=0.0, to=1.0, increment=0.1, textvariable=gamma)
-        # gamma.set(0.5)
-        # gm.grid(row=8, column=1, sticky=W)
+                plt_type, plot_data = np_plot.plot(file)
+                plot_window(plt_type, plot_data)
 
         # Buttons
         b_close = Button(self.parent, text="Close", borderwidth=1, width=20, command=root.destroy)

@@ -17,25 +17,6 @@ def change_plane(path, project, device, layer, baseline, set_orientation_zx, x_r
     Output:
           Python file (.py) with a "_xz" suffix.
     """
-    # Default values
-    # New project, device, and nanoparticles layer
-    # project = 1
-    # device = 2
-    # layer = 1
-
-    # New baseline (y-axis) for nanoparticles
-    # baseline = 0.5
-
-    # In omnisim, z axis is horizontal, and x axis is vertical,
-    # so it may be convenient to exchange x and z in the output to achieve
-    # direct comparison to the SEM image
-    # set_orientation_zx = True
-    #
-    # # Reverse x-axis or not, to have the the same view as on the SEM image
-    # # To do this, x_max needs to be known
-    # x_reverse = False
-    # x_max = 1.285 # for SEM: mag 100 000 x
-
     success = True
     structure = False
     info = ""
@@ -50,6 +31,7 @@ def change_plane(path, project, device, layer, baseline, set_orientation_zx, x_r
     else:
         set_orientation_zx = True
 
+    # Open file
     with open(path, 'r') as input_file:
         file = input_file.readlines()
 
@@ -65,7 +47,6 @@ def change_plane(path, project, device, layer, baseline, set_orientation_zx, x_r
                 values_list = values[0].split(",")
                 z = float(values_list[1])
                 x = float(values_list[2])
-                print(x)
                 angle = float(values_list[3])
                 y = float(values_list[4])
                 sizex = float(values_list[5])
@@ -83,20 +64,16 @@ def change_plane(path, project, device, layer, baseline, set_orientation_zx, x_r
                 z, y = y, z
                 if set_orientation_zx:
                     x, z = z, x
-                print("- " + str(x))
 
                 x_max = float(x_max)
-                print(x_reverse)
                 if x_reverse:
                     x = -x + x_max
-                    print("-- " + str(x))
 
-
-
-                # addellipsoid: FUNCTION(layer, z, x, angle, y, sizez, sizex, sizey)
+                # Structure: addellipsoid: FUNCTION(layer, z, x, angle, y, sizez, sizex, sizey)
                 newline = 'f.Exec("app.subnodes[{0}].subnodes[{1}].fsdevice.addellipsoid({2},{3},{4},{5},{6},{7},{8},{9})")\n' \
                         .format(project, device, layer, z, x, angle, y, sizez, sizex, sizey)
                 output.write(newline)
+
     if not structure:
         success = False
         info = "Selected file does not have the appropriate structure."

@@ -1,6 +1,9 @@
-import pandas, os
+import pandas
+import os
 
-def make_database(path1, path2, min, max, material_name):
+
+def make_database(path1, path2, minv, maxv, material_name):
+    # Open input files
     with open(path1) as re_file:
         data_re = pandas.read_csv(re_file, header=None)
 
@@ -12,7 +15,8 @@ def make_database(path1, path2, min, max, material_name):
 
     head, tail = os.path.split(path1)
     output_file = os.path.join(head, "ps_refbase.mat")
-    
+
+    # Create new file
     with open(output_file, "w") as output:
         header = "// Materials Parameters Database - PS \
                 \n    //--------------------------------------------\
@@ -36,14 +40,7 @@ def make_database(path1, path2, min, max, material_name):
         output.write(")\"")
 
         output.write("\nLAMBDA_REF 0")
-        output.write("\nLAMBDA_RANGE {} {}".format(min, max))
+        output.write("\nLAMBDA_RANGE {} {}".format(minv, maxv))
         output.write("\nEND\n")
 
     return output_file
-
-# path1 = r'C:\Users\madzi\OneDrive\Pulpit\np_toolbox-master\np_toolbox-master\!test_data\test_make_material_database\WU-silver-re.csv'
-# path2 = r'C:\Users\madzi\OneDrive\Pulpit\np_toolbox-master\np_toolbox-master\!test_data\test_make_material_database\WU-silver-im.csv'
-# min = 0.25
-# max = 1.45
-# name = "silver"
-# make_database(path1, path2, min, max, name)

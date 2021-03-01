@@ -1,6 +1,3 @@
-from tkinter import *
-from tkinter import ttk
-
 from GUI.f_plane import *
 from GUI.f_truncate import *
 from GUI.f_change_type import *
@@ -9,8 +6,9 @@ from GUI.f_maximum import *
 from GUI.f_plot import *
 from GUI.f_database import *
 
+
 class MainApplication(Frame):
-    def __init__(self, parent, *args, **kwargs):
+    def __init__(self, parent):
         Frame.__init__(self, parent, height=42, width=42)
         my_notebook = ttk.Notebook(parent)
         my_notebook.grid(row=0, column=0, sticky=W+E)
@@ -65,13 +63,14 @@ class MainApplication(Frame):
         my_notebook.rowconfigure(1, weight=1)
         my_notebook.columnconfigure(1, weight=1)
 
-        Plane_tab(fr_plane, parent)
-        Truncate_tab(fr_truncate, parent)
-        Convert_tab(fr_convert, parent)
+        PlaneTab(fr_plane, parent)
+        TruncateTab(fr_truncate, parent)
+        ConvertTab(fr_convert, parent)
         Combine_tab(fr_combine, parent)
-        Maximum_tab(fr_max, parent)
-        Plot_tab(fr_plot, parent)
-        Database_tab(fr_database, parent)
+        MaximumTab(fr_max, parent)
+        PlotTab(fr_plot, parent)
+        DatabaseTab(fr_database, parent)
+
 
 if __name__ == "__main__":
     root = Tk()
@@ -82,5 +81,3 @@ if __name__ == "__main__":
     root.rowconfigure(1, weight=1)
     MainApplication(root).grid()
     root.mainloop()
-
-

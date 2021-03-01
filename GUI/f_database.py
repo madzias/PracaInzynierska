@@ -6,7 +6,8 @@ import GUI.components as comp
 
 import scripts.np_database as np_database
 
-class Database_tab(Frame):
+
+class DatabaseTab(Frame):
     def __init__(self, parent, root, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
@@ -17,8 +18,8 @@ class Database_tab(Frame):
             start = True
             file1 = str(files[0].get())
             file2 = str(files[1].get())
-            min = min_var.get()
-            max = max_var.get()
+            minv = min_var.get()
+            maxv = max_var.get()
             mat = mat_var.get()
             if not os.path.exists(file1):
                 messagebox.showerror("Error!", "First file does not exist!")
@@ -27,7 +28,7 @@ class Database_tab(Frame):
                 messagebox.showerror("Error!", "Second file does not exist!")
                 start = False
             if start:
-                output = np_database.make_database(file1, file2, min, max, mat)
+                output = np_database.make_database(file1, file2, minv, maxv, mat)
                 messagebox.showinfo("Success!", "Output file " + str(output) + " has been created")
 
         def clear_input():
@@ -35,10 +36,9 @@ class Database_tab(Frame):
             max_var.set(1.45)
             mat_var.set("")
 
-
         # Checkboxes
-        frame_options = LabelFrame(self.parent, text="Lambda validity range", padx=10, pady=10) # pad od ramki do tego w środku
-        frame_options.grid(row=2, column=0, padx=5, pady=5, sticky=E+W, columnspan=3) # pad o ramki do brzegu okna
+        frame_options = LabelFrame(self.parent, text="Lambda validity range", padx=10, pady=10)
+        frame_options.grid(row=2, column=0, padx=5, pady=5, sticky=E+W, columnspan=3)
         frame_options.columnconfigure(0, weight=1)
         frame_options.rowconfigure(3, weight=1)
 
@@ -57,8 +57,8 @@ class Database_tab(Frame):
         maximum = Spinbox(frame_options, from_=0, to=100, increment=0.01, textvariable=max_var)
         maximum.grid(row=2, column=1, sticky=W)
 
-        material_options = LabelFrame(self.parent, text="Material", padx=10, pady=10) # pad od ramki do tego w środku
-        material_options.grid(row=3, column=0, padx=5, pady=5, sticky=E+W, columnspan=3) # pad o ramki do brzegu okna
+        material_options = LabelFrame(self.parent, text="Material", padx=10, pady=10)
+        material_options.grid(row=3, column=0, padx=5, pady=5, sticky=E+W, columnspan=3)
         material_options.columnconfigure(0, weight=1)
         material_options.rowconfigure(0, weight=1)
 
@@ -72,7 +72,7 @@ class Database_tab(Frame):
         b_close = Button(self.parent, text="Close", borderwidth=1, width=20, command=root.destroy)
         b_close.grid(row=4, column=0, sticky=W+S, padx=5, pady=5)
 
-        b_clear = Button(self.parent, text="Clear", borderwidth=1, width=20,command=clear_input)
+        b_clear = Button(self.parent, text="Clear", borderwidth=1, width=20, command=clear_input)
         b_clear.grid(row=4, column=1, sticky=S, padx=5, pady=5)
 
         b_run = Button(self.parent, text="Run", borderwidth=1, width=20, command=run_np)

@@ -8,7 +8,7 @@ class ReadFile:
         self.file_lines = ''
         self.title = False
         self.type = ''
-        self.mesurements = []
+        self.measurements = []
         self.units = ''
         self.labels = ''
         self.graph = ''
@@ -27,7 +27,6 @@ class ReadFile:
                 self.file = re.sub("#", "", self.file)
             self.file_lines = self.file.splitlines()
 
-
     def path_info(self):
         if self.path.endswith(".txt"):
             self.type = 'txt'
@@ -36,12 +35,11 @@ class ReadFile:
         else:
             print("The file must be .txt or .cht")
             sys.exit()
-        # print(self.type)
 
     def read_title(self):
         if self.type == 'txt':
             for line in self.file_lines:
-                if line.__contains__('FDTD'):    #zapytać - czy zawsze jest FDFT
+                if line.__contains__('FDTD'):
                     self.title = line
                     break
             if self.title is False:
@@ -88,7 +86,7 @@ class ReadFile:
             a = re.findall(r'(?<=XSCALE\s["])([^"]+)', self.file)
             self.x_label = a[0].rsplit(' ', 1)[0]
             self.x_unit = a[0].rsplit(' ', 1)[1]
-            b = a = re.findall(r'(?<=YSCALE\s["])([^"]+)', self.file)
+            b = re.findall(r'(?<=YSCALE\s["])([^"]+)', self.file)
             self.y_label = b[0].rsplit(' ', 1)[0]
             self.y_unit = b[0].rsplit(' ', 1)[1]
         elif self.type == 'cht' and self.graph == "2D":
@@ -112,7 +110,7 @@ class ReadFile:
                 if len(a) > 0:
                     a = a[0].split(' ')
                     a = list(filter(None, a))
-                    self.mesurements.append([float(a[0]), float(a[1])])
+                    self.measurements.append([float(a[0]), float(a[1])])
         elif self.type == 'cht' and self.graph == "1D":
             start = False
             for line in self.file_lines:
@@ -122,14 +120,14 @@ class ReadFile:
                     if re.search(r'.*(\d+[.]\d+).*(\d+[.]\d+).*', line):
                         a = line.split(',')
                         a = list(filter(None, a))
-                        self.mesurements.append([float(a[0]), float(a[1])])
+                        self.measurements.append([float(a[0]), float(a[1])])
         elif self.type == 'cht' and self.graph == "2D":
             for line in self.file_lines:
                 a = re.findall(r'(?=-{0,1}\d+\.\d+).*', line)
                 if len(a) > 0 and len(line) > 40:
                     a = a[0].split(' ')
                     a = list(filter(None, a))
-                    self.mesurements.append(a)
+                    self.measurements.append(a)
 
     def run_read_file(self):
         self.path_info()
@@ -137,13 +135,3 @@ class ReadFile:
         self.read_title()
         self.read_units_labels()
         self.read_mesurements()
-
-
-# path = r'C:\Users\madzi\OneDrive\Pulpit\TEST\test_plot\I_xz_u.cht'
-# r = ReadFile(path)
-# print(0)
-# r.path_info()
-# r.read_title()
-# r.read_header()
-# r.read_units_labels()
-# r.read_mesurements()

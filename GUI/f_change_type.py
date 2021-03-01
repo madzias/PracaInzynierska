@@ -3,9 +3,11 @@ from tkinter import messagebox
 import os
 import GUI.descriptions as desc
 import GUI.components as comp
+
 import scripts.np_change_type as np_ct
 
-class Convert_tab(Frame):
+
+class ConvertTab(Frame):
     def __init__(self, parent, root, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
@@ -25,6 +27,7 @@ class Convert_tab(Frame):
                 else:
                     messagebox.showinfo("Success!", "Output file " + str(output) + " has been created")
 
+        # Buttons
         b_close = Button(self.parent, text="Close", borderwidth=1, width=20, command=root.destroy)
         b_close.grid(row=2, column=0, sticky=W+S, padx=5, pady=5)
 

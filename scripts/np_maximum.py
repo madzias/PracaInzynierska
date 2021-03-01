@@ -1,17 +1,14 @@
-import os, sys, math, re
+import os
+import re
 from scipy.interpolate import interp1d
 from datetime import datetime
 import numpy as np
-import matplotlib.pyplot as plt
 from scripts.np_read_file import ReadFile
 
 
-directory = r"C:\Users\madzi\OneDrive\Pulpit\TEST\test_abs_max"
+def abs_maxima(directory, minv, maxv, variable_name):
 
-
-def abs_maxima(directory, min, max, variable_name):
-
-    '''
+    """
     Finds maxima of the absorption spectra given in the the *.txt or .cht files.
 
     Input:
@@ -20,30 +17,20 @@ def abs_maxima(directory, min, max, variable_name):
            Omnisim should be run in FDTD Scanner mode, scanning for np_size, inglass, trunc etc.
     Output:
            abs-max-out file
-    '''
+    """
     # Maximum will be searched in range [xminint, xmaxint] with accuracy intstep
     # (by interpolating data in this range with given step, then taking the maximum)
 
     success = True
     info = []
 
-    plot_partial = False
-    plot_final = True
-    do_linear_regression = True
     output_filename = os.path.join(str(directory), "abs-max-out")
 
-    xminint = int(min)
-    xmaxint = int(max)
+    xminint = int(minv)
+    xmaxint = int(maxv)
     intstep = 0.01
     intpoints = int((xmaxint - xminint) / intstep)
     do_linear_regression = True
-
-    # Experimental maxima {size [nm] : maximum [nm]}
-    # http://www.cytodiagnostics.com/store/pc/Gold-Nanoparticle-Properties-d2.htm
-    experimental_maxima = {5:515, 10:517, 15:525, 20:524, 30:526, 40:530, 50:535, \
-                           60:540, 70:548, 80:553, 90:564, 100:572}
-
-    ### Check input files
 
     # Collect the filenames with the absorption spectra
     input_filenames = []
@@ -68,26 +55,22 @@ def abs_maxima(directory, min, max, variable_name):
             file = ReadFile(filename)
             file.run_read_file()
 
-
             var_value = ""
             if input_filenames.index(filename) == 0:
                 try:
-                    var_name = re.findall(r'(?<=\().*(?=\s+\=)', file.title)[0]
+                    var_name = re.findall(r'(?<=[(]).*(?=\s+[=])', file.title)[0]
                 except:
                     var_name = variable_name
                 output.write("# File created on {}\n".format(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
                 output.write("# {}lambda_max [nm]\n".format(var_name.ljust(9)))
             try:
-                var_value = re.findall(r'(?<=\=\s).*(?=\))', file.title)[0]
+                var_value = re.findall(r'(?<=[=]\s).*(?=[)])', file.title)[0]
             except:
                 var_value, ext = os.path.basename(filename).split(".")
                 info.append("Warning - variable value was taken from the filename")
             try:
                 var_value = float(var_value)
             except ValueError:
-                # Skip plots and regression, since there are no numeric var_values
-                plot_partial = False
-                plot_final = False
                 do_linear_regression = False
 
             # Check, if the file is the sensor data file
@@ -103,23 +86,20 @@ def abs_maxima(directory, min, max, variable_name):
             # Do some rescaling etc.
             if var_name == "np_size":
                 # Convert to nanometers
-                print("przeskalowane")
                 var_value *= 1000
             if var_name == "inglass" and var_value < 1:
-                # Convert from [%/100] to [%], if necessary
-                #(some older results were given in [%/100])
                 var_value *= 100
 
             x = []
             y = []
 
             # Take the variable value from input
-            for m in file.mesurements:
+            for m in file.measurements:
                 x.append(m[0])
                 y.append(m[1])
 
             if 'um' in file.x_unit or 'µm' in file.x_unit:
-                x = [round(a * 1000, 2) for a in x] #convert to nanometers
+                x = [round(a * 1000, 2) for a in x]  # convert to nanometers
 
             # Data from Omnisim are in the reverse wavelength order, so unreversing
             x.reverse()
@@ -131,10 +111,9 @@ def abs_maxima(directory, min, max, variable_name):
             # x values for interpolation
             xnew = np.linspace(xminint, xmaxint, num=intpoints, endpoint=True)
             # Interpolated y values
-            print(xnew)
             yint = list(fint(xnew))
 
-            ### Find all of the maxima
+            # Find all of the maxima
             xmax = []
             for i in range(1, len(yint)-1):
                 if yint[i-1] < yint[i] > yint[i+1]:
@@ -145,12 +124,10 @@ def abs_maxima(directory, min, max, variable_name):
                 # print("no max in range [{}, {}]".format(xminint, xmaxint))
                 continue
 
-            #print("max = ", xmax)
-
             # Append result to a list
             xmax_list.append(xmax)
             var_list.append(var_value)
-            output.write("{}{}\n".format(str(round(var_value,1)).ljust(11),str(xmax)[1:-1].replace(","," ")))
+            output.write("{}{}\n".format(str(round(var_value, 1)).ljust(11), str(xmax)[1:-1].replace(",", " ")))
 
     if len(xmax_list) < 2:
         do_linear_regression = False
@@ -165,43 +142,36 @@ def abs_maxima(directory, min, max, variable_name):
         do_plot = False
         success = False
 
-    if do_plot:
-        plt.plot(var_list, xmax_list, ".")
-        if do_linear_regression:
-            # Linear regression
-            a, b = np.polyfit(var_list, xmax_list, 1)
-            xmax_reg = [a*i+b for i in var_list]
-            plt.plot(var_list, xmax_reg)
+    plot_title = ''
+    plot_x_label = ''
+    plot_y_label = ''
+    plot_path = ''
 
+    if do_plot:
         if var_name in ["trunc", "inglass"]:
             plot_title = \
                 "Position of the maximum of the absorption spectra \n for the truncated spheres of size 50 nm on glass"
-            plot_xlabel = "Sphere truncate factor (%)\n(0% - full sphere; 50% - half sphere, etc.)"
+            plot_x_label = "Sphere truncate factor (%)\n(0% - full sphere; 50% - half sphere, etc.)"
         elif var_name == "np_size":
             plot_title = \
                 "Position of the maximum of the absorption spectra \n for the spheres of variable size in air"
-            plot_xlabel = "Sphere size (µm)"
+            plot_x_label = "Sphere size (µm)"
         elif var_name == "al2o3":
             plot_title = \
                 "Position of the maximum of the absorption spectra \n for the spheres covered by Al2O3 layer"
-            plot_xlabel = "Thickness of the Al2O3 layer (µm)"
+            plot_x_label = "Thickness of the Al2O3 layer (µm)"
         else:
             plot_title = "Position of the maximum of the absorption spectra"
-            plot_xlabel = var_name
+            plot_x_label = var_name
 
-        plt.title(plot_title)
-        plt.xlabel(plot_xlabel)
-        plt.ylabel("Wavelength (nm)")
-        plt.show()
+        plot_y_label = "Wavelength (nm)"
+        plot_name = "plot_" + str(var_name) + "_" + str(minv) + "_" + str(maxv) + ".png"
+        plot_path = os.path.join(directory, plot_name)
 
     else:
-        info.append("Different numbers of maxima in datasets, skipping plot.")
+        plot_info = "Different numbers of maxima in datasets, skipping plot."
 
     if not success:
         if os.path.exists(output_filename):
             os.remove(output_filename)
-    return output_filename, success, info
-
-
-# d = r'C:\Users\madzi\OneDrive\Pulpit\TESTY INZYNIERKA\6_test_maximum\al2o3'
-# abs_maxima(d, 400, 600, "")
+    return output_filename, success, info, plot_info, {"do_plot": do_plot, "do_linear_regression": do_linear_regression, "plot_title": plot_title, "plot_x_label": plot_x_label, "plot_y_label": plot_y_label, "var_list": var_list, "xmax_list": xmax_list, "plot_path": plot_path}

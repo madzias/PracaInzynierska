@@ -6,7 +6,8 @@ import GUI.components as comp
 
 import scripts.np_truncate_flatten as np_truncate
 
-class Truncate_tab(Frame):
+
+class TruncateTab(Frame):
     def __init__(self, parent, root, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
@@ -41,7 +42,7 @@ class Truncate_tab(Frame):
                 start = False
             if start:
                 output, success, info = np_truncate.truncate_flatten(file, trun, strun, flat, sflat, ndev)
-                if success == False:
+                if not success:
                     messagebox.showerror("Error!", info)
                 else:
                     messagebox.showinfo("Success!", "Output file " + str(output) + " has been created")
@@ -58,10 +59,9 @@ class Truncate_tab(Frame):
             new_device.delete(0, END)
             new_device.insert(0, "")
 
-
         # Checkboxes
-        frame_options = LabelFrame(self.parent, text="Set values", padx=10, pady=10) # pad od ramki do tego w środku
-        frame_options.grid(row=2, column=0, padx=5, pady=5, sticky=E+W, columnspan=3) # pad o ramki do brzegu okna
+        frame_options = LabelFrame(self.parent, text="Settings", padx=10, pady=10)
+        frame_options.grid(row=2, column=0, padx=5, pady=5, sticky=E+W, columnspan=3)
         frame_options.columnconfigure(0, weight=1)
         frame_options.rowconfigure(3, weight=1)
 

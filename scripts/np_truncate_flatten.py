@@ -1,11 +1,11 @@
 import re
 import os
-import sys
 from math import sqrt
 from random import normalvariate
 
+
 def truncate_flatten(path, truncate, sigma_truncate, flatten, sigma_flatten, new_device):
-    '''
+    """
     Program adjusts y-positions of the spheres in the input script for Omnisim,
     so they will appear as the truncated and flattened spheres in the baseline.
     It is done by applying the truncating and flattening factors, given in percent
@@ -22,34 +22,7 @@ def truncate_flatten(path, truncate, sigma_truncate, flatten, sigma_flatten, new
     Output:
           File with a "_truncx_flaty" suffix,
           where x is the truncating factor and y is the flattening factor
-    '''
-
-    # # Truncating factor for the spheres [%]
-    # truncate = -1
-    # print("Spheres could be cut (truncated). 100% - full sphere, 50% - hemisphere, etc.")
-    # while truncate < 0 or truncate > 100:
-    #     truncate = int(input("Enter the percent where the spheres will be cut [0-100%]: "))
-    #
-    # sigma_truncate = -1
-    # while sigma_truncate < 0:
-    #     sigma_truncate = int(input("Enter the standard deviation for sphere cut, or 0: "))
-    #
-    # # Flattening factor for the spheres [%]
-    # print("Spheres could be flattened. Y-size = 100% - full size, 50% - flatten by a half, etc.")
-    # flatten = -1
-    # while flatten < 0 or flatten > 100:
-    #     flatten = int(input("Enter the percent of the nominal y-size of the spheres [0-100%]: "))
-    #
-    # sigma_flatten = -1
-    # while sigma_flatten < 0:
-    #     sigma_flatten = int(input("Enter the standard deviation for sphere flatten, or 0: "))
-    #
-    #
-    # # The new device number (optionally)
-    # try:
-    #     new_device = int(input("Enter device number, or <cr> to keep existing one: "))
-    # except ValueError:
-    #     new_device = -1
+    """
 
     success = True
     structure = False
@@ -78,7 +51,6 @@ def truncate_flatten(path, truncate, sigma_truncate, flatten, sigma_flatten, new
                 sizex = float(values_list[5])
                 sizey = float(values_list[6])
                 sizez = float(values_list[7])
-
 
                 d = re.findall(r'(?<=subnodes\[)\d+(?=\])', line)
                 project = int(d[0])
@@ -118,10 +90,10 @@ def truncate_flatten(path, truncate, sigma_truncate, flatten, sigma_flatten, new
                 newline = 'f.Exec("app.subnodes[{0}].subnodes[{1}].fsdevice.addellipsoid({2},{3},{4},{5},{6},{7},{8},{9})")\n' \
                     .format(project, device, layer, z, x, angle, y, sizez, sizex, sizey)
                 output.writelines(newline)
-    if structure == False:
+    if not structure:
         success = False
         info = "Selected file does not have the appropriate structure."
-    if success == False:
+    if not success:
         if os.path.exists(output_filename):
             os.remove(output_filename)
 

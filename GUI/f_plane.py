@@ -2,9 +2,11 @@ from tkinter import *
 from tkinter import messagebox
 import GUI.descriptions as desc
 import GUI.components as comp
+
 from scripts.np_change_plane import *
 
-class Plane_tab(Frame):
+
+class PlaneTab(Frame):
     def __init__(self, parent, root, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
         self.parent = parent
@@ -34,7 +36,6 @@ class Plane_tab(Frame):
                 else:
                     messagebox.showerror("Error!", info)
 
-
         def clear_input():
             project_var.set("1")
             device_var.set("2")
@@ -45,8 +46,8 @@ class Plane_tab(Frame):
             maximum_var.set("1.285")
 
         # Settings
-        frame_options = LabelFrame(self.parent, text="Settings: ", padx=10, pady=10) # pad od ramki do tego w środku
-        frame_options.grid(row=2, column=0, padx=5, pady=5, sticky=E+W, columnspan=5) # pad o ramki do brzegu okna
+        frame_options = LabelFrame(self.parent, text="Settings", padx=10, pady=10)
+        frame_options.grid(row=2, column=0, padx=5, pady=5, sticky=E+W, columnspan=5)
         frame_options.columnconfigure(0, weight=1)
         frame_options.rowconfigure(3, weight=1)
 
@@ -95,7 +96,6 @@ class Plane_tab(Frame):
         reverse_var.set("False")
         reverse = Spinbox(frame_options, values=("False", "True"), wrap=True, textvariable=reverse_var)
         reverse.grid(row=6, column=2, sticky=W)
-
 
         maximum_desc = Label(frame_options, text="Maximum x value for reversing")
         maximum_desc.grid(row=7, column=1, sticky=W)
